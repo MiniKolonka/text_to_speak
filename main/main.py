@@ -10,30 +10,41 @@ from io import BytesIO
 class Text_to_speak():
     """Инструменты для спикинга"""
 
-    # Инициализируем текст
+    # Инициализируем класс
     def __init__(self, text, lang):
         self.text = text
         self.lang = lang
 
-    # Преводим текст в *.mp3
+    
     def to_mp3(self):
+        """Преводим текст в *.mp3"""
         tts = speaker(f'{self.text}', lang=f'{self.lang}')
         tts.save('speak.mp3')
 
-    # Проигрываем наш текст
+    
     def to_play(self):
+        """Проигрываем наш текст"""
         mp3_fp = BytesIO()
         tts = speaker(f'{self.text}', lang=f'{self.lang}')
         tts.write_to_fp(mp3_fp)
 
-    # Получаем поток
+
+    def streams(self):
+        """Получаем потоки"""
+        tts = speaker(f'{self.text}', lang=f'{self.lang}')
+        urls = tts.get_urls()
+        return urls
+    
     def stream(self):
+        """Получаем поток"""
         tts = speaker(f'{self.text}', lang=f'{self.lang}')
         urls = tts.get_urls()
         url = urls[0]
+        return url
 
-    # Считываем файл и получаем текст
+    
     def mp3_to_text(self, _file):
+        """Считываем файл и получаем текст"""
         tts = speaker(f'{self.text}', lang=f'{self.lang}')
         with open(f'{_file}', 'wb') as f:
             tts.write_to_fp(f)
