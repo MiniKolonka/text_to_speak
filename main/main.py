@@ -49,17 +49,7 @@ class Text_to_speak():
         with open(f'{_file}', 'wb') as f:
             tts.write_to_fp(f)
 
-def main():
-    _text = str(input("Введите такст: "))
-    _lang = str(input("Введите язык: "))
-    _speaker = Text_to_speak(_text, _lang)
-    _speaker.to_mp3()
 
-
-
-
-if __name__ == "__main__":
-    main()
 
 
 
