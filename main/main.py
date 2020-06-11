@@ -20,6 +20,7 @@ class Text_to_speak():
         """Преводим текст в *.mp3"""
         tts = speaker(f'{self.text}', lang=f'{self.lang}')
         tts.save('speak.mp3')
+        print("Создался файл speak.mp3") 
 
     
     def to_play(self):
